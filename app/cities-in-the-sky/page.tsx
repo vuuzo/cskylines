@@ -2,16 +2,13 @@ import Box, { BoxContent, BoxImage } from "../components/layout/Box"
 import { Card, CardContent, CardImage, SecondaryText, Title } from "../components/layout/CardElements"
 import { BigHeading, MediumHeading, SmallHeading } from "../components/layout/Headings"
 import HeroWrapper from "../components/layout/HeroWrapper"
-import { client } from "../contentful/client"
+import { fetchContentfulEntries } from "../contentful/client"
 import CommunityLinks from "../components/sections/CommunityLinks"
 import Newsletter from "../components/sections/Newsletter"
 import Preorder from "../components/sections/Preorder"
 
 const Page = async () => {
-  const streamers = await client.getEntries({
-    content_type: 'streamerCard',
-})
-const { items } = streamers
+  const streamers = await fetchContentfulEntries('streamerCard')
 
   return (
     <>
@@ -21,13 +18,13 @@ const { items } = streamers
       </HeroWrapper>
       <div className='my-[72px] px-4 sm:px-8 lg:px-skylines'>
         <div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:gap-8'>
-          <MediumHeading className="col-[1/-1] text-center text-[1.25rem] lg:text-[1.5rem]">Watch You Favourite Streamers Live From Cities In The Sky</MediumHeading>
-          {items.map(item => (
-            <Card link={item.fields.link}>
-                <CardImage src={`https:${item.fields.image.fields.file.url}`}/>
+          <MediumHeading className="col-[1/-1] text-center text-[1.25rem] lg:text-[1.5rem]">Watch Your Favourite Streamers Live From Cities In The Sky</MediumHeading>
+          {streamers?.items.map(item => (
+            <Card link={item.fields.link as string}>
+                <CardImage src={`https:${item.fields?.image?.fields.file.url}`}/>
                 <CardContent className="bg-[#14171f]">
                     <SecondaryText>Watch on {item.fields.platform}</SecondaryText>
-                    <Title>{item.fields.nickname}</Title>
+                    <Title>{item.fields?.nickname}</Title>
                 </CardContent>
             </Card>
           ))}
