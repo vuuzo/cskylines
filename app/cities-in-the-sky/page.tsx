@@ -2,29 +2,13 @@ import Box, { BoxContent, BoxImage } from "../components/layout/Box"
 import { Card, CardContent, CardImage, SecondaryText, Title } from "../components/layout/CardElements"
 import { BigHeading, MediumHeading, SmallHeading } from "../components/layout/Headings"
 import HeroWrapper from "../components/layout/HeroWrapper"
-import { client, fetchAsset, fetchContentfulEntries, fetchStreamers } from "../contentful/client"
+import { fetchAsset, fetchStreamers } from "../contentful/client"
 import CommunityLinks from "../components/sections/CommunityLinks"
 import Newsletter from "../components/sections/Newsletter"
 import Preorder from "../components/sections/Preorder"
 
 const Page = async () => {
   const results = await fetchStreamers()
-  
-  results?.items.map(async item => {
-    const assetId = item.fields.image.sys.id
-    const URL = await fetchAsset(assetId)
-
-    return (
-      <Card link={item.fields.link}>
-        <CardImage src={`https:${URL}`}/>
-        <CardContent className="bg-[#14171f]">
-            <SecondaryText>Watch on {item.fields.platform}</SecondaryText>
-            <Title>{item.fields?.nickname}</Title>
-        </CardContent>
-      </Card>
-    )
-  })
-
   return (
     <>
       <HeroWrapper className="flex items-center">

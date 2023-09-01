@@ -33,24 +33,7 @@ export type TypeProject<Modifiers extends ChainModifiers, Locales extends Locale
 
 
 
-export interface ICover {
-  fields: {
-    title: string,
-    file: {
-      fileName: string,
-      contentType: string,
-      details: {
-        image: {
-          width: number,
-          height: number
-        },
-        size: number
-      },
-      url: string
-    },
-    description: string
-  }
-}
+
 // Streamer Card
 
 export interface TypeStreamerCardFields {
