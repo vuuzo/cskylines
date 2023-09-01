@@ -7,9 +7,13 @@ import Newsletter from "../components/sections/Newsletter"
 import CommunityLinks from "../components/sections/CommunityLinks"
 import Box, { BoxContent, BoxImage } from "../components/layout/Box"
 import Preorder from "../components/sections/Preorder"
+import { TypeFeatureSkeleton } from "../contentful/types"
 
 const Features = async () => {
-    const results = await fetchFeatures()
+    const results = await client.getEntries<TypeFeatureSkeleton>({
+        content_type: 'feature',
+        order: ["fields.releaseId"]
+    })
     return (
         <>
             <HeroWrapper className="flex items-center">
