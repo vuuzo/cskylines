@@ -22,7 +22,7 @@ const Page = async () => {
         <div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:gap-8'>
           <MediumHeading className="col-[1/-1] text-center text-[1.25rem] lg:text-[1.5rem]">Watch Your Favourite Streamers Live From Cities In The Sky</MediumHeading>
           {results?.items.map(item => (
-            <Card link={item.fields.link as string}>
+            <Card link={item.fields.link}>
                 <CardImage src={`https:${item.fields?.image?.fields.file.url}`}/>
                 <CardContent className="bg-[#14171f]">
                     <SecondaryText>Watch on {item.fields.platform}</SecondaryText>
