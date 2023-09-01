@@ -4,7 +4,7 @@ import Link from "next/link"
 import { twMerge } from "tailwind-merge"
 
 
-export const Card = ({ children, link, className }: { children: React.ReactNode, link: string, className?: string }) => {
+export const Card = ({ children, link, className }: { children: React.ReactNode, link?: string, className?: string }) => {
   if (link) {
       return (<Link href={link} className={twMerge('group flex flex-col', className)}>{ children }</Link>)}
     else {

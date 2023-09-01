@@ -2,13 +2,15 @@ import Box, { BoxContent, BoxImage } from "../components/layout/Box"
 import { Card, CardContent, CardImage, SecondaryText, Title } from "../components/layout/CardElements"
 import { BigHeading, MediumHeading, SmallHeading } from "../components/layout/Headings"
 import HeroWrapper from "../components/layout/HeroWrapper"
-import { fetchContentfulEntries } from "../contentful/client"
+import { fetchContentfulEntries, fetchSreamers } from "../contentful/client"
 import CommunityLinks from "../components/sections/CommunityLinks"
 import Newsletter from "../components/sections/Newsletter"
 import Preorder from "../components/sections/Preorder"
 
 const Page = async () => {
-  const streamers = await fetchContentfulEntries('streamerCard')
+  const results = await fetchSreamers()
+
+  // results?.items.map(item => console.log(item.fields.image?.fields.file.url))
 
   return (
     <>
@@ -19,7 +21,7 @@ const Page = async () => {
       <div className='my-[72px] px-4 sm:px-8 lg:px-skylines'>
         <div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:gap-8'>
           <MediumHeading className="col-[1/-1] text-center text-[1.25rem] lg:text-[1.5rem]">Watch Your Favourite Streamers Live From Cities In The Sky</MediumHeading>
-          {streamers?.items.map(item => (
+          {results?.items.map(item => (
             <Card link={item.fields.link as string}>
                 <CardImage src={`https:${item.fields?.image?.fields.file.url}`}/>
                 <CardContent className="bg-[#14171f]">
