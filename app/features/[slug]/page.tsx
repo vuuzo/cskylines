@@ -1,11 +1,12 @@
-import { MediumHeading } from "@/app/components/layout/Headings"
 import { client } from "@/app/contentful/client"
-import { FeaturesType } from "@/app/contentful/types"
+import { TypeFeatureSkeleton } from "@/app/contentful/types"
+import { MediumHeading } from "@/app/components/layout/Headings"
 
-const Feature = async ({ params }: { params: string }) => {
+const Feature = async ({ params }: { params: {slug: string} } ) => {
   
   const { slug } = params
-  const feature = await client.getEntries<FeaturesType>({
+
+  const feature = await client.getEntries<TypeFeatureSkeleton>({
     content_type: 'feature',
     'fields.slug': slug
   })
