@@ -2,15 +2,28 @@ import Box, { BoxContent, BoxImage } from "../components/layout/Box"
 import { Card, CardContent, CardImage, SecondaryText, Title } from "../components/layout/CardElements"
 import { BigHeading, MediumHeading, SmallHeading } from "../components/layout/Headings"
 import HeroWrapper from "../components/layout/HeroWrapper"
-import { fetchContentfulEntries, fetchSreamers } from "../contentful/client"
+import { client, fetchAsset, fetchContentfulEntries, fetchStreamers } from "../contentful/client"
 import CommunityLinks from "../components/sections/CommunityLinks"
 import Newsletter from "../components/sections/Newsletter"
 import Preorder from "../components/sections/Preorder"
 
 const Page = async () => {
-  const results = await fetchSreamers()
+  const results = await fetchStreamers()
+  
+  results?.items.map(async item => {
+    const assetId = item.fields.image.sys.id
+    const URL = await fetchAsset(assetId)
 
-  // results?.items.map(item => console.log(item.fields.image?.fields.file.url))
+    return (
+      <Card link={item.fields.link}>
+        <CardImage src={`https:${URL}`}/>
+        <CardContent className="bg-[#14171f]">
+            <SecondaryText>Watch on {item.fields.platform}</SecondaryText>
+            <Title>{item.fields?.nickname}</Title>
+        </CardContent>
+      </Card>
+    )
+  })
 
   return (
     <>
@@ -21,16 +34,22 @@ const Page = async () => {
       <div className='my-[72px] px-4 sm:px-8 lg:px-skylines'>
         <div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:gap-8'>
           <MediumHeading className="col-[1/-1] text-center text-[1.25rem] lg:text-[1.5rem]">Watch Your Favourite Streamers Live From Cities In The Sky</MediumHeading>
-          {results?.items.map(item => (
-            <Card link={item.fields.link}>
-                <CardImage src={`https:${item.fields?.image?.fields.file.url}`}/>
-                <CardContent className="bg-[#14171f]">
-                    <SecondaryText>Watch on {item.fields.platform}</SecondaryText>
-                    <Title>{item.fields?.nickname}</Title>
-                </CardContent>
-            </Card>
-          ))}
-
+          {
+              results?.items.map(async item => {
+                const assetId = item.fields.image.sys.id
+                const URL = await fetchAsset(assetId)
+            
+                return (
+                  <Card link={item.fields.link}>
+                    <CardImage src={`https:${URL}`}/>
+                    <CardContent className="bg-[#14171f]">
+                        <SecondaryText>Watch on {item.fields.platform}</SecondaryText>
+                        <Title>{item.fields?.nickname}</Title>
+                    </CardContent>
+                  </Card>
+                )
+              })
+          }
         </div>
 
         <Box>

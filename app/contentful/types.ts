@@ -33,14 +33,32 @@ export type TypeProject<Modifiers extends ChainModifiers, Locales extends Locale
 
 
 
+export interface ICover {
+  fields: {
+    title: string,
+    file: {
+      fileName: string,
+      contentType: string,
+      details: {
+        image: {
+          width: number,
+          height: number
+        },
+        size: number
+      },
+      url: string
+    },
+    description: string
+  }
+}
 // Streamer Card
 
 export interface TypeStreamerCardFields {
-    image?: EntryFieldTypes.AssetLink;
-    platform: EntryFieldTypes.Symbol<"Kick" | "Twitch" | "YouTube">;
-    link: EntryFieldTypes.Symbol;
-    nickname: EntryFieldTypes.Symbol;
+    image: EntryFieldTypes.AssetLink
+    platform: EntryFieldTypes.Symbol<"Kick" | "Twitch" | "YouTube">
+    link: EntryFieldTypes.Symbol
+    nickname: EntryFieldTypes.Symbol
 }
 
-export type TypeStreamerCardSkeleton = EntrySkeletonType<TypeStreamerCardFields, "streamerCard">;
-export type TypeStreamerCard<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeStreamerCardSkeleton, Modifiers, Locales>;
+export type TypeStreamerCardSkeleton = EntrySkeletonType<TypeStreamerCardFields, "streamerCard">
+export type TypeStreamerCard<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeStreamerCardSkeleton, Modifiers, Locales>

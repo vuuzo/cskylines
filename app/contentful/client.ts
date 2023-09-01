@@ -16,7 +16,13 @@ export const fetchContentfulEntries = async (type: string) => {
   }
 }
 
-export const fetchSreamers = async () => {
+
+export const fetchAsset = async (id: string) => {
+  const asset = await client.getAsset(id)
+  return asset.fields.file?.url
+}
+
+export const fetchStreamers = async () => {
   const entries = await client.getEntries<TypeStreamerCardSkeleton>({ content_type: 'streamerCard' })
   if (entries.items) {
     return {
