@@ -5,9 +5,9 @@ import { twMerge } from "tailwind-merge"
 
 export default function Box ({ children }: { children: ReactNode }) {
   return (
-    <Container className="p-[48px_16px] sm:px-0 md:px-0 lg:px-0 m-[48px_0] sm:items-center">
+    <div className="m-[48px_0] p-[48px_0] px-4 grid items-center grid-cols-skylines-4 gap-4 sm:m-[64px_0] sm:p-[72px_0] sm:grid-cols-skylines-10 sm:px-8 md:grid-cols-skylines-12 lg:gap-8">
       {children}
-    </Container>
+    </div>
   )
 }
 
