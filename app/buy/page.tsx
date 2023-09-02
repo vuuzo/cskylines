@@ -1,5 +1,4 @@
 import { IconBrandSteam, IconSteam } from "@tabler/icons-react"
-import Button from "../components/elements/Button"
 import Container from "../components/layout/Container"
 import { BigHeading, MediumHeading, SmallHeading } from "../components/layout/Headings"
 import HeroWrapper from "../components/layout/HeroWrapper"
@@ -43,7 +42,7 @@ const PurchasePage = () => {
   return (
       <HeroWrapper className="min-h-screen relative">
         <div className="absolute [background-image:linear-gradient(to_top,hsla(219,50%,13%,.9)_40%,transparent_85%)] inset-0 -z-[1]"/>
-        <Container className="px-0 sm:px-0 md:px-0 lg:px-0">
+        <Container className="lg:!px-0">
           <BigHeading className="col-[1/-1] mb-4 sm:text-left">Main Game</BigHeading>
           {versions.map(({
             title, price,
@@ -52,7 +51,7 @@ const PurchasePage = () => {
             <Card title={title} price={price} base={base} extra={extra} />
           ))}
         </Container>
-        <Container className="px-0 sm:px-0 md:px-0 lg:px-0 my-[4rem] md:mt-[8rem]">
+        <Container className="my-[4rem] md:mt-[8rem] lg:!px-0">
           <div className="col-[1/-1] text-left sm:col-[1/span_5] md:col-[1/span_6] lg:col-[1/span_6] lg:flex-wrap lg:flex">
             <MediumHeading className="mb-[3rem] w-full">Product Details</MediumHeading>
 
