@@ -118,6 +118,7 @@ const Header = () => {
                                         isActive === link.link &&
                                         <motion.div
                                             layoutId='active'
+                                            style={{ originY: '0px' }}
                                             className='w-1 aspect-square bg-white absolute rounded-full bottom-4 left-[calc(50%-2px)]'
                                         />
                                     }
