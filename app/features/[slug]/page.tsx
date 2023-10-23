@@ -1,5 +1,5 @@
-import { client } from "@/app/contentful/client"
-import { TypeFeatureSkeleton } from "@/app/contentful/types"
+import { client } from "@/lib/contentful/client"
+import { TypeFeatureSkeleton } from "@/lib/contentful/types"
 import { MediumHeading } from "@/app/components/layout/Headings"
 
 const Feature = async ({ params }: { params: {slug: string} } ) => {

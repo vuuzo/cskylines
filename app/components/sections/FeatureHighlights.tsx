@@ -1,10 +1,10 @@
 import { IconArrowNarrowRight } from "@tabler/icons-react"
 import Button from "../elements/Button"
-import { client, fetchAsset } from "@/app/contentful/client"
+import { client, fetchAsset } from "@/lib/contentful/client"
 import { Card, CardContent, CardImage, SecondaryText, Text, Title } from "../layout/CardElements"
-import { formatDate } from "../../utils/formatDate"
+import { formatDate } from "../../../utils/utils"
 import { MediumHeading } from "../layout/Headings"
-import { TypeFeatureSkeleton } from "@/app/contentful/types"
+import { TypeFeatureSkeleton } from "@/lib/contentful/types"
 
 const FeatureHighlights = async () => {
     

@@ -54,10 +54,8 @@ const Header = () => {
 
     return (
         <motion.header
-            className='z-50 fixed top-0 w-full'
-			variants={menu}
-			animate={hidden ? 'hidden' : 'visible'}
-			transition={transition}
+            className='z-50 fixed top-0 w-full transition-transform ease-in-out duration-300'
+            style={{ translateY: hidden ? '-100%' : '0px' }}
         >
             <nav className=' bg-skylines text-white flex h-[56px] lg:h-[72px] tracking-wider uppercase text-xs font-semibold'>
                 <Link 

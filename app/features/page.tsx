@@ -1,13 +1,13 @@
-import { formatDate } from "../utils/formatDate"
+import { formatDate } from "../../utils/utils"
 import { Card, CardContent, CardImage, SecondaryText, Text, Title } from "../components/layout/CardElements"
-import { client, fetchAsset, fetchFeatures } from "../contentful/client"
+import { client, fetchAsset, fetchFeatures } from "../../lib/contentful/client"
 import HeroWrapper from "../components/layout/HeroWrapper"
 import { BigHeading, MediumHeading, SmallHeading } from "../components/layout/Headings"
 import Newsletter from "../components/sections/Newsletter"
 import CommunityLinks from "../components/sections/CommunityLinks"
 import Box, { BoxContent, BoxImage } from "../components/layout/Box"
 import Preorder from "../components/sections/Preorder"
-import { TypeFeatureSkeleton } from "../contentful/types"
+import { TypeFeatureSkeleton } from "../../lib/contentful/types"
 
 const Features = async () => {
     const results = await client.getEntries<TypeFeatureSkeleton>({

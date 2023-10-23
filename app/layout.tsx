@@ -7,7 +7,7 @@ import localFont from 'next/font/local'
 const chakra = Chakra_Petch({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--font-chakra' })
 const source_sans = Source_Sans_3({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--font-source-sans' })
 const cityFont = localFont({
-  src: './cities-regular.otf',
+  src: '../assets/fonts/cities-regular.otf',
   variable: '--font-city'
 })
 
