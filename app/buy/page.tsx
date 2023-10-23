@@ -22,6 +22,8 @@ const details = {
   platforms: [
     'PlayStation 5',
     'Steam',
+    'Xbox Game Pass',
+    'Xbox Game Pass for PC',
     'Xbox Series X|S',
   ],
   compatibility: ['Windows'],
@@ -33,8 +35,18 @@ const details = {
 const requirements = [
   {
     system: 'Windows',
-    minimum: 'to be confirmed',
-    recommend: 'to be confirmed',
+    minimum: `Requires a 64-bit processor and operating system
+    OS: Windows® 10 Home 64 Bit
+    Processor: Intel® Core™ i7-6700K | AMD® Ryzen™ 5 2600X
+    Memory: 8 GB RAM
+    Graphics: Nvidia® GeForce™ GTX 970 (4 GB) | AMD equivalent
+    Sound Card: TBC`,
+    recommend: `Requires a 64-bit processor and operating system
+    OS: Windows® 10 Home 64 Bit | Windows® 11
+    Processor: Intel® Core™ i5-12600K | AMD® Ryzen™ 7 5800X
+    Memory: 16 GB RAM
+    Graphics: Nvidia® GeForce™ RTX 3080 (10 GB) | AMD equivalent
+    Sound Card: TBC`,
   }
 ]
 
@@ -52,7 +64,7 @@ const PurchasePage = () => {
           ))}
         </Container>
         <Container className="my-[4rem] md:mt-[8rem] lg:!px-0">
-          <div className="col-[1/-1] text-left sm:col-[1/span_5] md:col-[1/span_6] lg:col-[1/span_6] lg:flex-wrap lg:flex">
+          <div className="col-[1/-1] text-left sm:col-[1/span_5] gap-8 md:col-[1/span_6] lg:col-[1/span_6] lg:flex-wrap lg:flex">
             <MediumHeading className="mb-[3rem] w-full">Product Details</MediumHeading>
 
             <div className="lg:w-[50%]">

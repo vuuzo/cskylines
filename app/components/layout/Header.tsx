@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 import { useEffect, useState } from 'react'
-import { AnimatePresence, motion, useScroll } from 'framer-motion'
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion'
 
 import CitiesSkylinesLogo from '@/public/cs-horizontal-logo.png'
 import ParadoxLogo from '@/public/logo-platypus-white.svg'
@@ -14,8 +14,10 @@ import LogoutIcon from '@/public/logout-icon.svg'
 export const links = [
     { content: 'about', link: '/' },
     { content: 'features', link: '/features' },
+    { content: 'modding', link: '/modding' },
     { content: 'press', link: '/press' },
-    { content: 'cities in the sky', link: '/cities-in-the-sky' },
+    // { content: 'cities in the sky', link: '/cities-in-the-sky' },
+    { content: 'console news', link: '/console-news' },
 ]
 
 const Header = () => {
@@ -25,23 +27,18 @@ const Header = () => {
     const [visible, setVisible] = useState(false)
     const [hidden, setHidden] = useState(false)
 
-		const { scrollY } = useScroll()
+    const { scrollY } = useScroll()
 
+    useMotionValueEvent(scrollY, 'change', last => {
+        const prev = scrollY.getPrevious()
+        last > prev && last > 200 && !visible && window.innerWidth <= 1024 ? setHidden(true) : setHidden(false)
+    })
 
     useEffect(() => {
         setIsActive(pathname)
         
-        const mobileMenu = () => {
-            visible ? document.body.style.overflowY = 'hidden' : document.body.style.overflowY = 'auto'
-        }
+        const mobileMenu = () => { visible ? document.body.style.overflowY = 'hidden' : document.body.style.overflowY = 'auto' }
         mobileMenu()
-
-				return scrollY.on('change', () => {
-					let curr = scrollY.get()
-					let prev = scrollY.getPrevious()
-
-					curr < prev ? setHidden(false) : curr > 300 && curr > prev ? setHidden(true) : null
-				})
 
     }, [pathname, visible])
 
@@ -55,35 +52,12 @@ const Header = () => {
 			ease: 'easeInOut'
 		}
 
-    const variants = {
-        hidden: { opacity: 0},
-        visible: { opacity: 1 },
-        exit: { opacity: 0 },
-    }
-
-    const linksVariants = {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1 },
-        exit: { opacity: 0 },
-    }
-
-    const menuVariants = {
-        hidden: { scaleX: '0' },
-        visible: { scaleX: '100%', transition: {
-            duration: .45,
-            ease: [.25,.46,.45,.94]
-        }},
-        exit: { opacity: 0 }
-    }
-
-    
-
     return (
         <motion.header
             className='z-50 fixed top-0 w-full'
-						// variants={menu}
-						// animate={hidden ? 'hidden' : 'visible'}
-						// transition={transition}
+			variants={menu}
+			animate={hidden ? 'hidden' : 'visible'}
+			transition={transition}
         >
             <nav className=' bg-skylines text-white flex h-[56px] lg:h-[72px] tracking-wider uppercase text-xs font-semibold'>
                 <Link 
@@ -118,6 +92,7 @@ const Header = () => {
                                         isActive === link.link &&
                                         <motion.div
                                             layoutId='active'
+                                            style={{ originY: '0px' }}
                                             className='w-1 aspect-square bg-white absolute rounded-full bottom-4 left-[calc(50%-2px)]'
                                         />
                                     }
@@ -161,64 +136,62 @@ const Header = () => {
                         onClick={() => setVisible(!visible)}
                         className='lg:hidden z-30'
                     >
-                        <svg
-                            className="fill-white"
-                            width="56"
-                            height="56"
-                            xmlns="http://www.w3.org/2000/svg">
-                                <g fillRule="evenodd">
-                                    <path d="M16 22h24v2H16zM16 32h24v2H16z"></path>
-                                </g>
-                        </svg>
+                        {
+                            !visible  ? (
+                                <svg
+                                className="fill-white"
+                                width="56"
+                                height="56"
+                                xmlns="http://www.w3.org/2000/svg">
+                                    <g fillRule="evenodd"><path d="M16 22h24v2H16zM16 32h24v2H16z"></path></g>
+                                </svg>
+                            ) : (
+                                <svg
+                                width="56"
+                                height="56"
+                                viewBox="0 0 56 56"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 19L37.38 37.38M37.38 19L19 37.38" stroke="white" strokeWidth="2"/>
+                                </svg>
+                            )
+                        }
                     </button>
                 </div>
             </nav>
 
-            <AnimatePresence>
                 {
                 visible &&
-                    <motion.ul
+                    <ul
                         id='mobile-menu'
-                        variants={variants}
-                        initial='hidden'
-                        animate='visible'
-                        exit='exit'
-                        className='lg:hidden uppercase touch-none top-3 right-3 bottom-3 fixed w-[400px] text-lg font-semibold tracking-wider pt-[19vh] py-12 pb-8'
+                        className='fixed w-full h-[calc(100dvh-56px)] lg:hidden uppercase touch-none text-lg font-semibold tracking-wider px-4 border-t border-zinc-800'
                     >
-                        <motion.div
-                            style={{ transformOrigin: 'right' }}
-                            variants={menuVariants}
-                            initial='hidden'
-                            animate='visible'
-                            exit='exit'
-                            className='bg-red-600 absolute inset-0 rounded-md'
-                        />
+                        <div className='bg-skylines absolute inset-0'/>
                         {links.map(link => (
                             <li
                                 key={link.content}
                             >
                                 <Link
                                     href={link.link}
-                                    onClick={() => (setIsActive(link.content), setVisible(false))}
-                                    className={`relative group h-[56px] flex items-center px-10`}
+                                    onClick={() => (setIsActive(link.link), setVisible(false))}
+                                    className={`relative group h-[56px] flex items-center px-2 py-4 border-b border-zinc-800`}
                                 >
-                                    <span className={`group-hover:opacity-70 ${isActive === link.content ? 'text-skylines_yellow' : ''} transition-opacity`}>{link.content}</span>
+                                    <span className={`group-hover:opacity-70 ${isActive === link.link ? 'text-skylines_yellow' : ''} transition-opacity`}>{link.content}</span>
                                 </Link>
                             </li>
                         ))}
                         <li>
                             <Link
                                 href={'/'}
-                                className="relative hover:opacity-70 transition-opacity py-4 px-10 flex gap-3 items-center"
+                                className="relative hover:opacity-70 transition-opacity px-2 py-4 flex gap-3 items-center  border-b border-zinc-800"
                             >
                                 <span>Log in</span>
                                 <LogoutIcon className='fill-white' />
                             </Link>
                         </li>
-                    </motion.ul>
+                    </ul>
                 }
                 
-            </AnimatePresence>
         </motion.header>
     )
 }

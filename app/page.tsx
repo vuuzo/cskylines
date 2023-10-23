@@ -21,9 +21,9 @@ export default function Home () {
       <Trailers />
       <Blocks />
       <Screenshots />
+      <CommunityLinks />
       <PhysicialEditions />
       <Newsletter />
-      <CommunityLinks />
     </>
   )
 }
