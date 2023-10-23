@@ -16,6 +16,20 @@ export const metadata = {
   description: 'Cities: Skylines II Clone using latest Next 13 & Tailwind',
   themeColor: '#101B30',
   creator: 'VUUZO',
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: 'https://cskylines.vercel.app',
+    title: 'Cities: Skylines II Clone',
+    description: 'Cities: Skylines II Clone using latest Next 13 & Tailwind',
+    siteName: 'Cities: Skylines II Clone',
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: 'Cities: Skylines II Clone',
+    description: 'Cities: Skylines II Clone using latest Next 13 & Tailwind',
+    creator: "@vvuuzo",
+  },
 }
 
 export default function RootLayout({
