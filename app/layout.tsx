@@ -15,7 +15,7 @@ export const metadata = {
   title: 'Cities: Skylines II Clone',
   description: 'Cities: Skylines II Clone using latest Next 13 & Tailwind',
   themeColor: '#101B30',
-  creator: 'VUUZO'
+  creator: 'VUUZO',
 }
 
 export default function RootLayout({
