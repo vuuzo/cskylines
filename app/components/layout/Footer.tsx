@@ -9,7 +9,7 @@ import { links as mainLinks } from './Header'
 import PARADOX2_Logo from '@/public/logotype_white.svg'
 import PEGI3 from '@/public/PEGI_3.svg'
 import youtube from '@/public/icons/Youtube.svg'
-import twitter from '@/public/icons/Twitter.svg'
+import X from '@/public/icons/X.svg'
 import facebook from '@/public/icons/Facebook.svg'
 import vk from '@/public/icons/Vk.svg'
 import spotify from '@/public/icons/Spotify.svg'
@@ -23,7 +23,7 @@ const navLinks = [
 
 const socials = [
     { name: 'youtube', Icon: youtube, link: 'https://www.youtube.com/user/Paradoxplaza' },
-    { name: 'twitter', Icon: twitter, link: 'https://twitter.com/PdxInteractive' },
+    { name: 'x', Icon: X, link: 'https://twitter.com/PdxInteractive' },
     { name: 'facebook', Icon: facebook, link: 'https://www.facebook.com/ParadoxInteractive' },
     { name: 'vk', Icon: vk, link: 'https://vk.com/pdxint' },
     { name: 'spotify', Icon: spotify, link: 'https://open.spotify.com/artist/75N2nC2KNgaQ1e6bGs0wyc' },
@@ -99,7 +99,7 @@ const Footer = () => {
                                         className='flex flex-col lg:hidden'
                                     >
                                         {
-                                            navLinks.map(link => (
+                                            mainLinks.map(link => (
                                             <motion.li
                                                 key={link.content}
                                                 variants={links}
@@ -120,7 +120,16 @@ const Footer = () => {
                     {/* CREDENTIALS / BOTTOM NAVIGATION */}
                     <motion.div layout className='text-sm lg:flex lg:justify-between  col-skylines'>
                         <div>
-                            <p>© 2023 Paradox Interactive AB. All trademarks are the property of their respective owners.</p>
+                            <p>
+                                This is just a clone website of <Link
+                                    title='Official website'
+                                    target='_blank'
+                                    href={'https://www.paradoxinteractive.com/games/cities-skylines-ii/features'}
+                                    className='underline'
+                                >
+                                    Cities: Skylines II 
+                                </Link>
+                            </p>
                         </div>
                         <div className=''>
                             <Link href={'/'} className='underline font-semibold'>Privacy Policy</Link>
