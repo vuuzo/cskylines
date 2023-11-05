@@ -53,6 +53,9 @@ module.exports = {
         skylines_dark: '#101010',
         skylines_yellow: '#FFA836'
       },
+      listStyleImage: {
+        checkmark: 'url("/checkmark.svg")',
+      },
     },
   },
   plugins: [require('@tailwindcss/typography')],
