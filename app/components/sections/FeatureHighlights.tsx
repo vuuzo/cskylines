@@ -26,7 +26,7 @@ const FeatureHighlights = async () => {
                         const URL = await fetchAsset(assetId)
                     
                         return (
-                            <Card link={item.fields.unveiled ? `features/${item.fields.slug}` : ''}>
+                            <Card link={item.fields.unveiled ? `/features/${item.fields.slug}` : ''}>
                                 <CardImage src={`https:${URL}`}/>
                                 <CardContent arrow={item.fields.unveiled}>
                                     <SecondaryText>{formatDate(item.fields.date as string)}</SecondaryText>

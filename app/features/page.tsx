@@ -16,10 +16,7 @@ const Features = async () => {
     })
     return (
         <>
-            <HeroWrapper className="flex items-center">
-                <SmallHeading>Cities: Skylines II</SmallHeading>
-                <BigHeading>Features</BigHeading>
-            </HeroWrapper>
+
             <div className='my-[72px] px-4 sm:px-8 lg:px-skylines'>
                 <Box>
                     <BoxImage src='/features.jpg'/>
