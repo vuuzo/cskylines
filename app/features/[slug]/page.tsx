@@ -42,7 +42,7 @@ const Feature = async ({ params }: { params: {slug: string} } ) => {
         )
       },
       // @ts-ignore
-      [BLOCKS.PARAGRAPH]: (node, children) => (<p className="my-6 first-of-type:mt-0">{children}</p>)
+      [BLOCKS.PARAGRAPH]: (node, children) => (<p className="my-6 first:mt-0">{children}</p>)
     }
   }
 
