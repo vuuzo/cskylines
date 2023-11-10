@@ -29,7 +29,13 @@ const Hero = () => {
                 </div>
             </div>
             <StorefrontContainer />
-            <Image src={background} sizes='100vw' alt='City View' fill className='object-cover object-hero -z-10' />
+            <Image
+                src={background}
+                placeholder="blur"
+                sizes='100vw'
+                alt='City View'
+                fill className='object-cover object-hero -z-10'
+            />
         </div>
     )
 }

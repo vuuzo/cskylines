@@ -1,4 +1,3 @@
-import { IconBrandSteam, IconSteam } from "@tabler/icons-react"
 import Container from "../components/layout/Container"
 import { BigHeading, MediumHeading, SmallHeading } from "../components/layout/Headings"
 import HeroWrapper from "../components/layout/HeroWrapper"

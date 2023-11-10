@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { ReactNode } from "react"
 import { twMerge } from "tailwind-merge"
+import background from '@/public/hero-image.jpg'
 
 const HeroWrapper = ({ children, className }: { children: ReactNode, className?: string }) => {
   return (
@@ -10,7 +11,14 @@ const HeroWrapper = ({ children, className }: { children: ReactNode, className?:
           { children }          
         </div>
       </div>
-      <Image src={'/hero-image.jpg'} sizes='100vw' alt='City View' fill className='object-cover [object-position:center]  -z-10' />
+      <Image
+        src={background}
+        placeholder="blur"
+        sizes='100vw'
+        alt='City View'
+        fill
+        className='object-cover [object-position:center] -z-10'
+      />
     </div>
   )
 } 
